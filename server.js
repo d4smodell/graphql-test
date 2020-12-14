@@ -17,6 +17,7 @@ var schema = buildSchema(`
     persons: [Person],
     from1toN(N: Int!): [Int],
     fromNto1(N: Int!): [Int],
+    getRandomPerson: Person,
     getPersonByName(name: String!): [Person],
     getPersonByCar(marka: String!): [Person]
   }
@@ -27,6 +28,10 @@ var root = {
     persons: () => db.persons.map(getPersonDisplay),
     from1toN: ({N}) => Array.from(Array(N).keys()),
     fromNto1: ({N}) => Array.from(Array(N).keys()).reverse(),
+    getRandomPerson: () => {
+      var personIndex = Math.floor(Math.random() * db.persons.length);
+      return getPersonDisplay(db.persons.find((_, index) => index === personIndex))
+    },
     getPersonByName: ({name}) => db.persons.filter(p => p.name === name).map(getPersonDisplay),
     getPersonByCar: ({marka}) => db.persons.filter(p => db.cars.filter(c => c.marka === marka).map(c => c.Id).some(id => id === p.carId)).map(getPersonDisplay),
 };

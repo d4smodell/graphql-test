@@ -1,9 +1,14 @@
-var express = require('express');
-var { graphqlHTTP } = require('express-graphql');
-var { buildSchema } = require('graphql');
+const express = require('express');
+const { graphqlHTTP } = require('express-graphql');
+const { buildSchema } = require('graphql');
 const db = require('./database.json')
 
-var schema = buildSchema(`
+const getPersonDisplay = person => {
+  const car = db.cars.find(c => c.Id === person.carId);
+  return Object.assign({}, person, { car: car ? `${car.marka}, ${car.model}` : '' });
+}
+
+const schema = buildSchema(`
   type Person {
       name: String!,
       age: Int!,
@@ -23,7 +28,7 @@ var schema = buildSchema(`
   }
 `);
 
-var root = {
+const root = {
     hello: () => 'Hello world!',
     persons: () => db.persons.map(getPersonDisplay),
     from1toN: ({N}) => Array.from(Array(N).keys()),
@@ -36,12 +41,7 @@ var root = {
     getPersonByCar: ({marka}) => db.persons.filter(p => db.cars.filter(c => c.marka === marka).map(c => c.Id).some(id => id === p.carId)).map(getPersonDisplay),
 };
 
-function getPersonDisplay(person) {
-  const car = db.cars.find(c => c.Id === person.carId);
-  return Object.assign({}, person, { car: car ? `${car.marka}, ${car.model}` : '' });
-}
-
-var app = express();
+const app = express();
 app.use('/graphql', graphqlHTTP({
   schema: schema,
   rootValue: root,

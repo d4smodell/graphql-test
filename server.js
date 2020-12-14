@@ -44,7 +44,7 @@ app.use('/graphql', graphqlHTTP({
 }));
 
 app.get('/', function(req, res){
-  res.sendFile(__dirname + '/index.html');
+  res.sendFile(__dirname + '/front/index.html');
 });
 
 app.listen(4000, () => console.log('Now browse to localhost:4000/graphql'));

@@ -2,14 +2,16 @@
     "persons": [
         { "name": "Max", "age": 36, "origin": "Russian", "city": "Tyumen", "carId": 1 },
         { "name": "Andrew", "age": 33, "origin": "Russian", "city": "Knyazhevo", "carId": 2 },
-        { "name": "Kotya", "age": 35, "origin": "Kazakh", "city": "Tyumen", "carId": 3 },
-        { "name": "Vovan", "age": 34, "origin": "Russian", "city": "Tyumen", "carId": null },
-        { "name": "Shaban", "age": 34, "origin": "Russian", "city": "Bogandinskii", "carId": 4 }
+        { "name": "Kaidar", "age": 35, "origin": "Kazakh", "city": "Tyumen", "carId": 3 },
+        { "name": "Vladimir", "age": 34, "origin": "Russian", "city": "Tyumen", "carId": null },
+        { "name": "Leonid", "age": 34, "origin": "Russian", "city": "Bogandinskii", "carId": 4 }
     ],
     "cars": [
         { "Id": 1, "marka": "Hyundai", "model": "Solaris" },
         { "Id": 2, "marka": "Toyota", "model": "Prius" },
         { "Id": 3, "marka": "Hyundai", "model": "Accent" },
-        { "Id": 4, "marka": "Toyota", "model": "Corolla" }
+        { "Id": 4, "marka": "Toyota", "model": "Corolla" },
+        { "Id": 5, "marka": "Toyota", "model": "Highlander" },
+        { "Id": 6, "marka": "Suzuki", "model": "Swift" }
     ]
 }
